@@ -1,9 +1,17 @@
 using GraphQLDemo.GraphQL;
 using GraphQLDemo.Services;
+using GraphQLDemo.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<ProductoService>();
+// Lee la cadena de conexión desde appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ProductoDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ProductoService>();
 
 builder.Services
     .AddGraphQLServer()
