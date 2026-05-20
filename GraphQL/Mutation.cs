@@ -13,11 +13,5 @@ namespace GraphQLDemo.GraphQL
 
         public bool DeleteProducto(int id, [Service] ProductoService service)
             => service.Delete(id);
-
-        //public Producto AddProducto(Producto input, [Service] ProductoService service)
-        //    => service.Add(input);
-
-        //public Producto UpdateProducto(int id, Producto input, [Service] ProductoService service)
-        //    => service.Update(id, input);
     }
 }
